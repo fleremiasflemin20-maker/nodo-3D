@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { -webkit-font-smoothing: antialiased; color-scheme: dark; }
+  body { @apply bg-fondo font-sans text-texto; overflow-x: hidden; }
+  :focus-visible { @apply outline-none ring-2 ring-acento ring-offset-2 ring-offset-fondo; }
+  ::selection { background: #4DA3FF; color: #0A0D12; }
+}
+
+@layer components {
+  /* La cuadrícula de plano que hay detrás de la portada y las cabeceras. */
+  .plano {
+    background-image:
+      linear-gradient(rgba(77,163,255,.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(77,163,255,.07) 1px, transparent 1px),
+      linear-gradient(rgba(77,163,255,.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(77,163,255,.035) 1px, transparent 1px);
+    background-size: 96px 96px, 96px 96px, 24px 24px, 24px 24px;
+  }
+  .etiqueta { @apply font-mono text-[11px] uppercase tracking-[0.14em] text-tenue; }
+  .caja { @apply rounded-xl border border-linea bg-panel; }
+  .boton { @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold transition disabled:cursor-not-allowed disabled:opacity-50; }
+  .boton-primario { @apply boton bg-acento text-fondo hover:bg-[#6CB4FF]; }
+  .boton-borde { @apply boton border border-linea bg-panel2 text-texto hover:border-acento/60; }
+  .boton-peligro { @apply boton border border-mal/40 bg-mal/10 text-mal hover:bg-mal/20; }
+  .entrada { @apply w-full rounded-lg border border-linea bg-fondo px-3 py-2.5 text-sm text-texto placeholder:text-tenue/60 focus:border-acento focus:outline-none; }
+  .chip { @apply inline-flex items-center gap-1.5 rounded-md border border-linea bg-panel2 px-2 py-1 font-mono text-[11px] text-tenue; }
+}
