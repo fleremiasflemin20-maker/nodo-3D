@@ -1,0 +1,31 @@
+{
+  "name": "nodo-3d",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "test": "node --test 'pruebas/*.test.ts'",
+    "local": "npm run build && wrangler d1 migrations apply nodo-3d --local && wrangler dev",
+    "preparar": "node scripts/preparar.mjs",
+    "desplegar": "npm run build && wrangler d1 migrations apply nodo-3d --remote && wrangler deploy"
+  },
+  "dependencies": {
+    "lucide-react": "^1.72.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.3.0",
+    "autoprefixer": "^10.6.2",
+    "postcss": "^8.5.32",
+    "tailwindcss": "^3.4.19",
+    "typescript": "~6.0.2",
+    "vite": "^8.3.8",
+    "wrangler": "^4.161.0"
+  }
+}

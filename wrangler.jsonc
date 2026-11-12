@@ -1,0 +1,41 @@
+// Nodo 3D en Cloudflare. La web es estática (dist/, servida por ASSETS) y el
+// Worker de worker/index.ts solo atiende /api/*.
+// La primera vez: `npm run preparar` (crea la base D1 y el almacén R2 y rellena
+// el database_id de abajo). Después, cada vez: `npm run desplegar`.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "nodo-3d",
+  "main": "worker/index.ts",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application",
+    "run_worker_first": ["/api/*"]
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "nodo-3d",
+      "database_id": "00000000-0000-0000-0000-000000000000",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "ARCHIVOS",
+      "bucket_name": "nodo-3d-archivos"
+    }
+  ],
+  "vars": {
+    // Precio mensual que se muestra. El que se cobra es el del plan de PayPal.
+    "PRECIO": "4.99",
+    // Parte de lo recaudado que va a los creadores, repartida por descargas.
+    "PORCENTAJE_CREADORES": "60",
+    "PAYPAL_ENTORNO": "sandbox",
+    "PAYPAL_CLIENT_ID": "",
+    "PAYPAL_PLAN_ID": "",
+    "ADMIN_CORREOS": "fleremias@outlook.com,fleremiasflemin20@gmail.com",
+    "WHATSAPP": "593979523040"
+  }
+}
